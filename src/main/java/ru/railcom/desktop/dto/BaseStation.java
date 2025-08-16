@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator.dto;
+package ru.railcom.desktop.dto;
 
 import javafx.scene.Node;
 import lombok.Data;

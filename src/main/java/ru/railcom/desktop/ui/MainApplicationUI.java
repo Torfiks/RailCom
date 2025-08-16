@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator.ui;
+package ru.railcom.desktop.ui;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,11 +14,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ru.modulator.desktop.modulator.SimulatorController;
+import ru.railcom.desktop.SimulatorController;
 
 import java.util.Objects;
 
-import static ru.modulator.desktop.modulator.string.NameField.*;
+import static ru.railcom.desktop.string.NameField.*;
 
 public class MainApplicationUI  {
 

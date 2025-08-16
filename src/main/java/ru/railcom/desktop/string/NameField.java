@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator.string;
+package ru.railcom.desktop.string;
 
 public class NameField {
     public static String NameApp = "RailCom";

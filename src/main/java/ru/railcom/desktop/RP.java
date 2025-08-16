@@ -1,9 +1,8 @@
-package ru.modulator.desktop.modulator;
+package ru.railcom.desktop;
 
 
 import lombok.Data;
-import lombok.Getter;
-import ru.modulator.desktop.modulator.dto.BaseStation;
+import ru.railcom.desktop.dto.BaseStation;
 
 import java.util.ArrayList;
 import java.util.Comparator;

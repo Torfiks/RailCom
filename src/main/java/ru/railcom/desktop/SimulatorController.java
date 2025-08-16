@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator;
+package ru.railcom.desktop;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import org.jetbrains.annotations.NotNull;
-import ru.modulator.desktop.modulator.module.SignalChartPane;
+import ru.railcom.desktop.module.SignalChartPane;
 
 public class SimulatorController {
 

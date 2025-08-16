@@ -1,11 +1,10 @@
-package ru.modulator.desktop.modulator.ui.module;
+package ru.railcom.desktop.ui.module;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import ru.modulator.desktop.modulator.dto.BaseStation;
+import ru.railcom.desktop.dto.BaseStation;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator;
+package ru.railcom.desktop;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -7,8 +7,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import static ru.modulator.desktop.modulator.string.NameField.NameApp;
-import static ru.modulator.desktop.modulator.ui.MainApplicationUI.*;
+import static ru.railcom.desktop.string.NameField.NameApp;
+import static ru.railcom.desktop.ui.MainApplicationUI.*;
 /*
 ██████╗  █████╗ ██╗██╗      ██████╗ ██████╗ ███╗   ███╗
 ██╔══██╗██╔══██╗██║██║     ██╔════╝██╔═══██╗████╗ ████║

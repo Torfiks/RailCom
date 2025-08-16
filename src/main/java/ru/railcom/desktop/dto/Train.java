@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator.dto;
+package ru.railcom.desktop.dto;
 
 
 public record Train(double speedKmph) {

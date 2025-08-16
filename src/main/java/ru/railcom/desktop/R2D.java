@@ -1,13 +1,12 @@
-package ru.modulator.desktop.modulator;
+package ru.railcom.desktop;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import lombok.Data;
-import lombok.Getter;
-import ru.modulator.desktop.modulator.dto.BaseStation;
-import ru.modulator.desktop.modulator.ui.module.Road2DPaneUi;
+import ru.railcom.desktop.dto.BaseStation;
+import ru.railcom.desktop.ui.module.Road2DPaneUi;
 
 import java.util.ArrayList;
 import java.util.List;

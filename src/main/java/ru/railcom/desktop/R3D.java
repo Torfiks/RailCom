@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator;
+package ru.railcom.desktop;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -14,15 +14,15 @@ import javafx.scene.transform.Transform;
 import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
-import ru.modulator.desktop.modulator.dto.BaseStation;
+import ru.railcom.desktop.dto.BaseStation;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static ru.modulator.desktop.modulator.RP.*;
-import static ru.modulator.desktop.modulator.ui.module.Train3DSceneUI.createBaseStationModel;
-import static ru.modulator.desktop.modulator.ui.module.Train3DSceneUI.setupSceneContent;
+import static ru.railcom.desktop.RP.*;
+import static ru.railcom.desktop.ui.module.Train3DSceneUI.createBaseStationModel;
+import static ru.railcom.desktop.ui.module.Train3DSceneUI.setupSceneContent;
 
 @Getter
 @Setter

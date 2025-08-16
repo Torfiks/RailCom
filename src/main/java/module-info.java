@@ -8,9 +8,14 @@ module ru.modulator.desktop.modulator {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires annotations;
+    requires static lombok;
 
-    opens ru.modulator.desktop.modulator to javafx.fxml;
-    exports ru.modulator.desktop.modulator;
+    opens ru.railcom.desktop to javafx.fxml;
+    exports ru.railcom.desktop;
+    exports ru.railcom.desktop.dto;
+    opens ru.railcom.desktop.dto to javafx.fxml;
+    exports ru.railcom.desktop.module;
+    opens ru.railcom.desktop.module to javafx.fxml;
 }

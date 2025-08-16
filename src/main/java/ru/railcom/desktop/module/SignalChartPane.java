@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator.module;
+package ru.railcom.desktop.module;
 
 import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;

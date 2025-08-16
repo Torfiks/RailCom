@@ -1,4 +1,4 @@
-package ru.modulator.desktop.modulator.ui.module;
+package ru.railcom.desktop.ui.module;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -12,7 +12,7 @@ import javafx.scene.shape.Box;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import ru.modulator.desktop.modulator.dto.BaseStation;
+import ru.railcom.desktop.dto.BaseStation;
 
 import java.util.List;
 
