@@ -1,25 +1,14 @@
 package ru.railcom.desktop.ui.simulation;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Box;
-import javafx.scene.shape.Cylinder;
-import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Transform;
-import javafx.util.Duration;
 import lombok.Setter;
 import ru.railcom.desktop.module.BaseStation;
 import ru.railcom.desktop.ui.control.EventBus;
@@ -55,8 +44,7 @@ public class Simulation2DController implements Initializable {
 
     private double totalTrackLength;
     private double trainPosition;
-    // Используем отдельный список для отображения, чтобы не изменять оригинальные данные при перетаскивании
-    private List<BaseStation> displayedStations;
+    private List<BaseStation> stations;
 
     private boolean draggingTrain = false;
     private BaseStation draggingStation = null;
@@ -65,10 +53,6 @@ public class Simulation2DController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        canvas.widthProperty().bind(simulation2DContainer.widthProperty());
-        canvas.heightProperty().set(200);
-
         try {
             trainImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/train.png")));
             baseStationImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/base_station.png")));
@@ -78,6 +62,9 @@ public class Simulation2DController implements Initializable {
 
         // Устанавливаем стили
         simulation2DContainer.getStylesheets().add(getClass().getResource("/css/simulation_2d.css").toExternalForm());
+
+        canvas.widthProperty().bind(simulation2DContainer.widthProperty());
+        canvas.heightProperty().set(200);
 
         // Подписываемся на события
         EventBus.getInstance().subscribe(this::onSimulationUpdate);
@@ -98,39 +85,32 @@ public class Simulation2DController implements Initializable {
         trainPosition = simulationController.getTrainPosition();
 
         // Если станции не инициализированы — создаем их
-        if (displayedStations == null) {
-            displayedStations = new ArrayList<>();
+        if (stations == null) {
+            stations = new ArrayList<>();
             int count = simulationController.getCountBaseStations();
             createBaseStations(count);
+        } else {
+            // Обновляем количество и позиции, если изменились
+            if (stations.size() != simulationController.getCountBaseStations()) {
+                createBaseStations(simulationController.getCountBaseStations());
+            } else {
+                // Обновляем координаты X на основе новых позиций
+                updateStationPositionsOnCanvas();
+            }
         }
-
-        // Синхронизируем станции с контроллером (если были перемещены в 3D)
-        syncStationsFromController();
 
         // Запускаем/останавливаем таймер в зависимости от состояния
         updateTimer();
     }
 
     /**
-     * Синхронизация станций с контроллера (для синхронизации с 3D)
+     * Обновление позиций станций на холсте при изменении дистанции
      */
-    private void syncStationsFromController() {
-        List<BaseStation> controllerStations = simulationController.getBaseStations();
-        if (controllerStations != null && controllerStations.size() == displayedStations.size()) {
-            for (int i = 0; i < controllerStations.size(); i++) {
-                BaseStation controllerStation = controllerStations.get(i);
-                BaseStation displayedStation = displayedStations.get(i);
-
-                // Обновляем позиции, если они изменились
-                if (Math.abs(displayedStation.getPosition() - controllerStation.getPosition()) > 0.001) {
-                    displayedStation.setPosition(controllerStation.getPosition());
-                    // Пересчитываем X на основе новой позиции
-                    if (totalTrackLength > 0) {
-                        double scale = canvas.getWidth() / totalTrackLength;
-                        displayedStation.setX((int) (controllerStation.getPosition() * scale));
-                    }
-                }
-            }
+    private void updateStationPositionsOnCanvas() {
+        if (stations == null || totalTrackLength <= 0) return;
+        for (BaseStation station : stations) {
+            int x = (int) ((station.getPosition() / totalTrackLength) * canvas.getWidth());
+            station.setX(x);
         }
     }
 
@@ -140,15 +120,17 @@ public class Simulation2DController implements Initializable {
     private void createBaseStations(int count) {
         if (count <= 0) return;
 
-        displayedStations.clear();
-        double spacing = totalTrackLength / (count - 1);
+        stations.clear();
+        if (totalTrackLength > 0) {
+            double spacing = totalTrackLength / (count - 1);
 
-        for (int i = 0; i < count; i++) {
-            double position = spacing * i;
-            // Масштабируем позицию для отображения на Canvas (ширина 900px)
-            int x = (int) ((position / totalTrackLength) * canvas.getWidth());
-            displayedStations.add(new BaseStation(position, x, null));
+            for (int i = 0; i < count; i++) {
+                double position = spacing * i;
+                int x = (int) ((position / totalTrackLength) * canvas.getWidth());
+                stations.add(new BaseStation(position, x, null));
+            }
         }
+        simulationController.setBaseStations(stations);
     }
 
     /**
@@ -227,7 +209,6 @@ public class Simulation2DController implements Initializable {
 
         // Путь (линия трассы)
         gc.setStroke(Color.GRAY);
-        gc.setLineWidth(2);
         gc.strokeLine(0, 100, canvas.getWidth(), 100);
 
         // Базовые станции
@@ -265,11 +246,10 @@ public class Simulation2DController implements Initializable {
      * Отрисовка базовых станций
      */
     private void drawBaseStations(GraphicsContext gc) {
-        if (displayedStations == null || canvas.getWidth() <= 0) return;
+        if (stations == null || canvas.getWidth() <= 0) return;
 
-        for (BaseStation station : displayedStations) {
+        for (BaseStation station : stations) {
             int x = station.getX();
-
             // Рисуем линию с меткой расстояния над станцией
             gc.setStroke(Color.WHITE);
             gc.setLineWidth(1);
@@ -277,13 +257,13 @@ public class Simulation2DController implements Initializable {
 
             // Рисуем метку расстояния
             gc.setFill(Color.WHITE);
-            gc.fillText(String.format("%.0f", station.getPosition()), x - 15, 35);
+            gc.fillText(String.format("%.0f", station.getPosition()), x-5, 35);
 
             // Рисуем изображение станции
             if (baseStationImage != null && baseStationImage.getProgress() == 1.0) {
                 gc.drawImage(baseStationImage,
                         x - (double) BASE_STATION_WIDTH / 2,  // X
-                        85,                           // Y
+                        70,                           // Y
                         BASE_STATION_WIDTH,           // Ширина
                         BASE_STATION_HEIGHT);         // Высота
             } else {
@@ -320,8 +300,8 @@ public class Simulation2DController implements Initializable {
         }
 
         // Проверяем, нажали ли на станцию
-        if (displayedStations != null) {
-            for (BaseStation station : displayedStations) {
+        if (stations != null) {
+            for (BaseStation station : stations) {
                 int x = station.getX();
                 if (Math.abs(mouseX - x) <= (double) BASE_STATION_WIDTH / 2 &&
                         Math.abs(mouseY - 85) <= (double) BASE_STATION_HEIGHT / 2) {
@@ -334,12 +314,12 @@ public class Simulation2DController implements Initializable {
     }
 
     private void handleMouseReleased(MouseEvent e) {
-        if (draggingStation != null) {
-            // Обновляем позицию в контроллере и синхронизируем с 3D
-            syncStationToController(draggingStation);
-        }
         draggingTrain = false;
         draggingStation = null;
+        // После завершения перетаскивания обновляем контроллер и публикуем событие
+        if (simulationController != null) {
+            EventBus.getInstance().publish();
+        }
     }
 
     private void handleMouseDragged(MouseEvent e) {
@@ -351,47 +331,44 @@ public class Simulation2DController implements Initializable {
         if (draggingTrain && totalTrackLength > 0) {
             // Исправленная формула для вычисления позиции поезда
             double scale = canvas.getWidth() / totalTrackLength;
-            trainPosition = mouseX / scale; // Просто делим координату мыши на масштаб
+            trainPosition = mouseX / scale;
 
             if (trainPosition < 0) trainPosition = 0;
             if (trainPosition > totalTrackLength) trainPosition = totalTrackLength;
 
             // Обновляем позицию в контроллере
             simulationController.setTrainPosition(trainPosition);
+            // Публикуем событие для синхронизации с 3D
+            EventBus.getInstance().publish();
             draw();
         }
 
         if (draggingStation != null) {
             int newX = (int)(mouseX - dragStartX);
-            // Ограничиваем перемещение по оси X
-            newX = Math.max(0, Math.min((int)canvas.getWidth(), newX));
             draggingStation.setX(newX);
 
             // Обновляем позицию станции в километрах
             double newPosition = (newX * totalTrackLength) / canvas.getWidth();
             draggingStation.setPosition(newPosition);
 
+            // Пересоздаем все станции с новыми позициями
+            updateAllStationsPositions();
+
             draw();
         }
     }
 
-    /**
-     * Синхронизация позиции станции с контроллером (для передачи в 3D)
-     */
-    private void syncStationToController(BaseStation station) {
-        if (simulationController != null) {
-            List<BaseStation> controllerStations = simulationController.getBaseStations();
-            if (controllerStations != null) {
-                // Найдем соответствующую станцию в контроллере
-                for (BaseStation controllerStation : controllerStations) {
-                    if (Math.abs(controllerStation.getPosition() - station.getPosition()) < 0.1) {
-                        // Обновляем позицию в контроллере
-                        controllerStation.setPosition(station.getPosition());
-                        break;
-                    }
-                }
-            }
+    private void updateAllStationsPositions() {
+        if (stations == null || stations.isEmpty()) return;
+
+        for (BaseStation station : stations) {
+            double position = (station.getX() * totalTrackLength) / canvas.getWidth();
+            station.setPosition(position);
         }
+
+        simulationController.setBaseStations(stations);
+        // Публикуем событие для синхронизации с 3D
+        EventBus.getInstance().publish();
     }
 
     /**

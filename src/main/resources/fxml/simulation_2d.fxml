@@ -2,7 +2,10 @@
 
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 
 <Pane fx:id="simulation2DContainer" styleClass="simulation-pane-2d" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.simulation.Simulation2DController">
-    <Canvas fx:id="canvas" styleClass="canvas-pane"/>
+    <StackPane styleClass="canvas-container">
+        <Canvas fx:id="canvas" styleClass="canvas-pane"/>
+    </StackPane>
 </Pane>

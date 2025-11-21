@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,9 +37,27 @@ public class ControlPanelController implements Initializable {
                 int stations = Integer.parseInt(baseStationsField.getText());
                 double distance = Double.parseDouble(distanceField.getText());
 
+                // Обновляем дистанцию и пересчитываем позиции
+                double oldDistance = simulationController.getTrack();
+                simulationController.setTrack(distance);
+
+                if (oldDistance > 0) {
+                    // Пересчитываем позиции станций пропорционально новому расстоянию
+                    if (simulationController.getBaseStations() != null) {
+                        for (var station : simulationController.getBaseStations()) {
+                            double oldPos = station.getPosition();
+                            double ratio = oldPos / oldDistance;
+                            station.setPosition(distance * ratio);
+                        }
+                    }
+                    // Пересчитываем позицию поезда
+                    double oldTrainPos = simulationController.getTrainPosition();
+                    double trainRatio = oldTrainPos / oldDistance;
+                    simulationController.setTrainPosition(distance * trainRatio);
+                }
+
                 simulationController.setCurrentSpeed(speed);
                 simulationController.setCountBaseStations(stations);
-                simulationController.setTrack(distance);
 
                 // Публикуем событие обновления
                 EventBus.getInstance().publish();

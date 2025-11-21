@@ -17,7 +17,7 @@
             </VBox>
 
             <VBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Расстояние между БС (км)" styleClass="control-label"/>
+                <Label text="Расстояние (км)" styleClass="control-label"/>
                 <TextField fx:id="distanceField" text="25" prefWidth="60"/>
             </VBox>
         </HBox>
