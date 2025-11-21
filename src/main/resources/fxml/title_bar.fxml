@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane fx:id="titleBar" prefHeight="30.0" styleClass="title-bar" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.component.TitleBarComponent">
+    <left>
+        <Label fx:id="titleLabel" styleClass="title-label" text="U" BorderPane.alignment="CENTER_LEFT">
+            <padding>
+                <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+            </padding>
+        </Label>
+    </left>
+    <right>
+        <HBox fx:id="buttonsBox" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT">
+            <Button fx:id="minimizeButton" mnemonicParsing="false" styleClass="title-button" text="–" />
+            <Button fx:id="maximizeButton" mnemonicParsing="false" styleClass="title-button" text="□" />
+            <Button fx:id="closeButton" mnemonicParsing="false" styleClass="title-button" text="✕" />
+        </HBox>
+    </right>
+</BorderPane>

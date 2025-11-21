@@ -1,0 +1,46 @@
+.title-bar {
+    -fx-background-color: #121212;
+    -fx-border-color: #1e1e1e;
+    -fx-border-width: 0 0 1 0;
+}
+
+.title-label {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.title-button {
+    -fx-background-color: #121212;
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 16px;
+    -fx-pref-width: 45px;
+    -fx-pref-height: 30px;
+    -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+.title-button:hover {
+    -fx-background-color: #2d2d2d;
+}
+
+.title-button:pressed {
+    -fx-background-color: #404040;
+}
+
+/* Стили для кнопки закрытия */
+#closeButton {
+    -fx-text-fill: #ff5555;
+}
+
+#closeButton:hover {
+    -fx-background-color: #ff5555;
+    -fx-text-fill: white;
+}
+
+#closeButton:pressed {
+    -fx-background-color: #cc3333;
+    -fx-text-fill: white;
+}

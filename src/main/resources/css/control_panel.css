@@ -1,0 +1,64 @@
+.control-panel {
+    -fx-background-color: #1e1e1e;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 1);
+    -fx-padding: 15;
+}
+
+.control-label {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-weight: bold;
+}
+
+.start-button {
+    -fx-background-radius: 10;
+    -fx-background-color: #2d4059;
+    -fx-text-fill: white;
+    -fx-padding: 8 15;
+}
+
+.start-button:hover {
+    -fx-background-color: #e74c3c;
+}
+
+.simulation-pane {
+    -fx-background-color: #121212;
+    -fx-padding: 10;
+}
+
+.simulation-container {
+    -fx-background-color: #1e1e1e;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 1);
+}
+
+.chart-pane {
+    -fx-background-color: #1e1e1e;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 1);
+    -fx-padding: 15;
+}
+
+.chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #4FC3F7, #69F0AE);
+    -fx-padding: 0 0 10 0;
+}
+
+.legend-label {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 12px;
+}
+
+.line-chart .default-color0.chart-series-line {
+    -fx-stroke: #4FC3F7;
+    -fx-stroke-width: 2;
+}
+
+.line-chart .default-color1.chart-series-line {
+    -fx-stroke: #69F0AE;
+    -fx-stroke-width: 2;
+}

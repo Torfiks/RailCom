@@ -11,11 +11,15 @@ module ru.modulator.desktop.modulator {
     requires com.almasb.fxgl.all;
     requires annotations;
     requires static lombok;
+    requires java.desktop;
+    requires javafx.graphics;
 
-    opens ru.railcom.desktop to javafx.fxml;
+    opens ru.railcom.desktop.ui to javafx.fxml;
+    opens ru.railcom.desktop.ui.component to javafx.fxml;
+    opens ru.railcom.desktop.ui.control to javafx.fxml;
+    opens ru.railcom.desktop.ui.simulation to javafx.fxml;
+
     exports ru.railcom.desktop;
-    exports ru.railcom.desktop.dto;
-    opens ru.railcom.desktop.dto to javafx.fxml;
-    exports ru.railcom.desktop.module;
-    opens ru.railcom.desktop.module to javafx.fxml;
+    exports ru.railcom.desktop.ui;
+    exports ru.railcom.desktop.ui.component;
 }

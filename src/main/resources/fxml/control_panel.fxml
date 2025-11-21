@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="control-panel" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.control.ControlPanelController">
+    <left>
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <VBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Скорость поезда (км/ч)" styleClass="control-label"/>
+                <TextField fx:id="speedField" text="80" prefWidth="60"/>
+            </VBox>
+
+            <VBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Количество БС" styleClass="control-label"/>
+                <TextField fx:id="baseStationsField" text="5" prefWidth="60"/>
+            </VBox>
+
+            <VBox spacing="5" alignment="CENTER_LEFT">
+                <Label text="Расстояние между БС (км)" styleClass="control-label"/>
+                <TextField fx:id="distanceField" text="25" prefWidth="60"/>
+            </VBox>
+        </HBox>
+    </left>
+
+    <right>
+        <Button fx:id="startButton" text="Запустить симуляцию" styleClass="start-button" />
+    </right>
+</BorderPane>
