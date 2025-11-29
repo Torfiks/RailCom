@@ -8,6 +8,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import lombok.Setter;
+import ru.railcom.desktop.ui.control.ControlPanelController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,11 +30,18 @@ public class TitleBarComponent implements Initializable {
     public Button maximizeButton;
     @FXML
     public Button closeButton;
+    @FXML
+    public Button pauseButton;
+    @FXML
+    public Button startButton;
 
     private double xOffset = 0;
     private double yOffset = 0;
 
     private Stage stage;
+
+    @Setter
+    private ControlPanelController controlPanelController; // <-- Добавлено
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -73,6 +82,13 @@ public class TitleBarComponent implements Initializable {
             closeButton.setTooltip(new Tooltip(closeTooltip));
             closeButton.setOnAction(e -> stage.close());
         }
+
+        startButton.setOnAction(e -> {
+            controlPanelController.startSimulation();
+        });
+        pauseButton.setOnAction(e -> {
+            controlPanelController.startSimulation();
+        });
     }
 
     private void setupDrag() {
@@ -88,4 +104,5 @@ public class TitleBarComponent implements Initializable {
             });
         }
     }
+
 }

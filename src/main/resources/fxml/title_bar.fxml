@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.shape.SVGPath?>
 <BorderPane fx:id="titleBar" prefHeight="30.0" styleClass="title-bar" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.component.TitleBarComponent">
     <left>
         <Label fx:id="titleLabel" styleClass="title-label" text="U" BorderPane.alignment="CENTER_LEFT">
@@ -15,10 +16,21 @@
         </Label>
     </left>
     <right>
-        <HBox fx:id="buttonsBox" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT">
-            <Button fx:id="minimizeButton" mnemonicParsing="false" styleClass="title-button" text="–" />
-            <Button fx:id="maximizeButton" mnemonicParsing="false" styleClass="title-button" text="□" />
-            <Button fx:id="closeButton" mnemonicParsing="false" styleClass="title-button" text="✕" />
+        <HBox spacing="5" alignment="CENTER_RIGHT">
+            <HBox fx:id="buttonStatusBox" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT">
+                <!-- Кнопка Stop -->
+                <Button fx:id="pauseButton" text="⏹" mnemonicParsing="false" styleClass="title-button">
+                </Button>
+                <!-- Кнопка Play -->
+                <Button fx:id="startButton" text="▶" mnemonicParsing="false" styleClass="title-button">
+                </Button>
+            </HBox>
+
+            <HBox fx:id="buttonsBox" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT">
+                <Button fx:id="minimizeButton" mnemonicParsing="false" styleClass="title-button" text="–"/>
+                <Button fx:id="maximizeButton" mnemonicParsing="false" styleClass="title-button" text="□"/>
+                <Button fx:id="closeButton" mnemonicParsing="false" styleClass="title-button" text="✕"/>
+            </HBox>
         </HBox>
     </right>
 </BorderPane>
