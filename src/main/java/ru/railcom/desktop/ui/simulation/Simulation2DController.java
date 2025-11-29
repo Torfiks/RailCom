@@ -30,7 +30,7 @@ public class Simulation2DController implements Initializable {
     @Setter
     private SimulationController simulationController;
 
-    private static final int DESIRED_WIDTH = 50;
+    private static final int DESIRED_WIDTH = 35;
     private static final int DESIRED_HEIGHT = 30;
     private static final int BASE_STATION_WIDTH = 30;
     private static final int BASE_STATION_HEIGHT = 30;
@@ -54,8 +54,8 @@ public class Simulation2DController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            trainImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/train.png")));
-            baseStationImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/base_station.png")));
+            trainImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/train.jpg")));
+            baseStationImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/image/base_station.jpg")));
         } catch (Exception e) {
             System.err.println("Не удалось загрузить изображения: " + e.getMessage());
         }

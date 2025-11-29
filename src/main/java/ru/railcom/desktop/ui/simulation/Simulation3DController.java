@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point3D;
 import javafx.scene.*;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
@@ -53,6 +54,8 @@ public class Simulation3DController implements Initializable {
 
     // Список станций для 3D отображения, синхронизируемый с 2D
     private final List<BaseStation> baseStations = new ArrayList<>();
+    private final List<Cylinder> radioChannelLines = new ArrayList<>(); // <-- Новые линии
+
     private double totalTrackLength = 1000; // Масштабный коэффициент: 1 км = 100 единиц
 
 
@@ -217,7 +220,6 @@ public class Simulation3DController implements Initializable {
         pointLight.setTranslateZ(500);
         pointLight.setConstantAttenuation(0.5);
         root3D.getChildren().add(pointLight);
-
         return camera;
     }
 

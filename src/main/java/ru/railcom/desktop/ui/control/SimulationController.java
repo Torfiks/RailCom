@@ -14,9 +14,12 @@ public class SimulationController {
     private boolean isRunning;
     private double track; // Длина трассы
     private double currentSpeed; // Текущая скорость
+
     private int countBaseStations; // Количество базовых станций
     private List<BaseStation> baseStations; // Список станций
+
     private double trainPosition; // Позиция поезда
     private double trainSpeed; // Скорость поезда (для анимации)
 
+    private String typeArea = "urban";
 }
