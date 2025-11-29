@@ -1,0 +1,44 @@
+.signal-chart {
+    -fx-background-color: #1e1e1e;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 1);
+}
+
+.signal-chart .chart-plot-background {
+    -fx-background-color: #1e1e1e;
+}
+
+.signal-chart .axis {
+    -fx-tick-label-fill: #e0e0e0;
+    -fx-text-fill: #e0e0e0;
+}
+
+.signal-chart .chart-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-fill: #e0e0e0;
+}
+
+.signal-chart .chart-legend {
+    -fx-text-fill: #e0e0e0;
+}
+
+.signal-chart .default-color0.chart-series-line {
+    -fx-stroke: #4FC3F7;
+    -fx-stroke-width: 2;
+}
+
+.signal-chart .default-color1.chart-series-line {
+    -fx-stroke: #FF5252;
+    -fx-stroke-width: 2;
+}
+
+.signal-chart .default-color2.chart-series-line {
+    -fx-stroke: #69F0AE;
+    -fx-stroke-width: 2;
+}
+
+.signal-chart .chart-series-line {
+    -fx-effect: null;
+}

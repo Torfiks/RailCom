@@ -1,0 +1,15 @@
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.chart.SignalChartController">
+    <LineChart fx:id="chart" animated="false" createSymbols="false" styleClass="signal-chart" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <xAxis>
+            <CategoryAxis fx:id="xAxis" label="Время" side="BOTTOM"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="yAxis" label="Значение" side="LEFT"/>
+        </yAxis>
+    </LineChart>
+</AnchorPane>

@@ -13,8 +13,10 @@ module ru.modulator.desktop.modulator {
     requires static lombok;
     requires java.desktop;
     requires javafx.graphics;
+    requires javafx.base;
 
     opens ru.railcom.desktop.ui to javafx.fxml;
+    opens ru.railcom.desktop.ui.chart to javafx.fxml;
     opens ru.railcom.desktop.ui.component to javafx.fxml;
     opens ru.railcom.desktop.ui.control to javafx.fxml;
     opens ru.railcom.desktop.ui.simulation to javafx.fxml;

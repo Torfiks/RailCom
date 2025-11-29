@@ -9,7 +9,8 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class BaseStation {
-
+//    private double height;
+//    private double radius;
     private double position; // позиция в процентах от общего расстояния
     private int x; // координата на оси Ox
     private Node node;
