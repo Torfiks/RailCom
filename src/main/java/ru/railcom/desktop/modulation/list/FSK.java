@@ -63,12 +63,11 @@ public class FSK {
      *
      * @param M          число частот
      * @param r          принятый сигнал: массив векторов длины M (Complex[M] для каждого символа)
-     * @param coherence  "COHERENT" или "NONCOHERENT"
+     * @param isCoherent  "COHERENT" или "NONCOHERENT"
      * @param refPhases  опорные фазы (только для когерентной; может быть null)
      * @return массив обнаруженных символов (1-based)
      */
-    public static int[] detect(int M, Complex[][] r, String coherence, Complex[] refPhases) {
-        boolean isCoherent = "COHERENT".equalsIgnoreCase(coherence);
+    public static int[] detect(int M, Complex[][] r, boolean isCoherent, Complex[] refPhases) {
         int[] dCap = new int[r.length];
 
         if (isCoherent) {

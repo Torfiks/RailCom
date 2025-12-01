@@ -37,7 +37,8 @@ public class PSK {
     public static Complex[] constructPSK(int M) {
         Complex[] ref = new Complex[M];
         double angleStep = 2.0 * Math.PI / M;
-        double scale = 1.0 / Math.sqrt(2.0);
+//        double scale = 1.0 / Math.sqrt(2.0);
+        double scale = 1.0;
 
         for (int i = 0; i < M; i++) {
             double angle = i * angleStep;

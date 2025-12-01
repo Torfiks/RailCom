@@ -15,6 +15,10 @@ public record Complex(double real, double imag) {
         return Math.sqrt(real * real + imag * imag);
     }
 
+    public double squaredAbs() {
+        return real * real + imag * imag;
+    }
+
     @NotNull
     @Override
     public String toString() {

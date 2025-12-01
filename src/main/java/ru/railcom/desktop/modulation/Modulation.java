@@ -1,7 +1,7 @@
 package ru.railcom.desktop.modulation;
 
 public enum Modulation {
-    FSK,
+//    FSK,
     PAM,
     PSK,
     QAM
