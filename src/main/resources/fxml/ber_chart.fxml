@@ -3,10 +3,10 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.chart.BERChatController">
+<AnchorPane fx:id="rootPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.chart.BERChartController">
     <LineChart fx:id="chart" animated="false" createSymbols="false" styleClass="signal-chart" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
         <xAxis>
-            <NumberAxis fx:id="xAxis" lowerBound="-3" upperBound="10" tickUnit="1"/>
+            <NumberAxis fx:id="xAxis" upperBound="10" tickUnit="1"/>
         </xAxis>
         <yAxis>
             <NumberAxis fx:id="yAxis" lowerBound="0.000001" upperBound="0.5" tickUnit="0.1"/>

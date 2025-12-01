@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.canvas.Canvas?>
+<Pane fx:id="shapeSignalChatPane" styleClass="simulation-pane-2d" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.chart.ShapeSignalChartController">
+    <StackPane styleClass="canvas-container">
+        <Canvas fx:id="canvas" styleClass="canvas-pane"/>
+    </StackPane>
+</Pane>

@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-public class BERChatController implements Initializable {
+public class BERChartController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;

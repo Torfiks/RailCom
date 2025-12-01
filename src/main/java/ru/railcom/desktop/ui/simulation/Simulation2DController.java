@@ -24,6 +24,7 @@ public class Simulation2DController implements Initializable {
 
     @FXML
     private Pane simulation2DContainer;
+
     @FXML
     private Canvas canvas;
 
@@ -61,7 +62,7 @@ public class Simulation2DController implements Initializable {
         }
 
         // Устанавливаем стили
-        simulation2DContainer.getStylesheets().add(getClass().getResource("/css/simulation_2d.css").toExternalForm());
+        simulation2DContainer.getStylesheets().add(getClass().getResource("/css/simulation/simulation_2d.css").toExternalForm());
 
         canvas.widthProperty().bind(simulation2DContainer.widthProperty());
         canvas.heightProperty().set(200);

@@ -6,10 +6,8 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Point3D;
 import javafx.scene.*;
 import javafx.scene.control.Alert;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
@@ -70,7 +68,7 @@ public class Simulation3DController implements Initializable {
         // Добавляем SubScene в контейнер
         simulation3DContainer.getChildren().add(subScene);
         // Устанавливаем стили
-        simulation3DContainer.getStylesheets().add(getClass().getResource("/css/simulation_3d.css").toExternalForm());
+        simulation3DContainer.getStylesheets().add(getClass().getResource("/css/simulation/simulation_3d.css").toExternalForm());
 
         // Подписываемся на события
         EventBus.getInstance().subscribe(this::onSimulationUpdate);

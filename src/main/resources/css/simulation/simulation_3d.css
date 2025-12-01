@@ -1,0 +1,9 @@
+.simulation-pane-3d {
+    -fx-background-color: #1e1e32;
+    -fx-border-color: #4a4a6a;
+    -fx-border-width: 1px;
+}
+
+.simulation-pane-3d .sub-scene {
+    -fx-background-color: transparent;
+}

@@ -7,11 +7,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import ru.railcom.desktop.ui.chart.BERChatController;
+import ru.railcom.desktop.ui.chart.BERChartController;
+import ru.railcom.desktop.ui.chart.ShapeSignalChartController;
 import ru.railcom.desktop.ui.chart.SignalChartController;
 import ru.railcom.desktop.ui.component.TitleBarComponent;
 import ru.railcom.desktop.ui.control.ControlPanelController;
 import ru.railcom.desktop.ui.control.SimulationController;
+import ru.railcom.desktop.ui.modulation.Modulation3DController;
+import ru.railcom.desktop.ui.setting.SettingComponent;
 import ru.railcom.desktop.ui.simulation.Simulation2DController;
 import ru.railcom.desktop.ui.simulation.Simulation3DController;
 
@@ -72,116 +75,71 @@ public class MainScreen {
     }
 
     public VBox createContext() {
-        VBox mainLayout = new VBox(15);
-        mainLayout.setStyle("-fx-background-color: #121212; -fx-padding: 15;");
-
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/control_panel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/main_content.fxml"));
 
             loader.setControllerFactory(clazz -> {
+                // Control Panel
                 if (clazz == ControlPanelController.class) {
                     ControlPanelController controller = new ControlPanelController();
                     controller.setup(simulationController);
                     titleBarComponent.setControlPanelController(controller);
                     return controller;
                 }
-                try {
-                    return clazz.getDeclaredConstructor().newInstance();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
-            mainLayout.getChildren().add(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/simulation_2d.fxml"));
-            loader.setControllerFactory(clazz -> {
+                // 2D Simulation
                 if (clazz == Simulation2DController.class) {
                     Simulation2DController controller = new Simulation2DController();
-                    controller.setSimulationController(simulationController); // Передаем контроллер
+                    controller.setSimulationController(simulationController);
                     return controller;
                 }
-                try {
-                    return clazz.getDeclaredConstructor().newInstance();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
-            mainLayout.getChildren().add(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/simulation_3d.fxml"));
-            loader.setControllerFactory(clazz -> {
+                // 3D Simulation
                 if (clazz == Simulation3DController.class) {
                     Simulation3DController controller = new Simulation3DController();
-                    controller.setSimulationController(simulationController); // Передаем контроллер
+                    controller.setSimulationController(simulationController);
                     return controller;
                 }
-                try {
-                    return clazz.getDeclaredConstructor().newInstance();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
-            mainLayout.getChildren().add(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/signal_chart.fxml"));
-
-            // Установка фабрики контроллера для SignalChartController
-            loader.setControllerFactory(clazz -> {
+                // Signal Chart
                 if (clazz == SignalChartController.class) {
                     signalChartController = new SignalChartController();
                     signalChartController.setSimulationController(simulationController);
                     return signalChartController;
                 }
+                // Modulation 3D
+                if (clazz == Modulation3DController.class) {
+                    Modulation3DController controller = new Modulation3DController();
+                    // controller.setSignalChartController(signalChartController); // при необходимости
+                    return controller;
+                }
+                // Setting Component
+                if (clazz == SettingComponent.class) {
+                    SettingComponent controller = new SettingComponent();
+                    // controller.setSignalChartController(signalChartController); // при необходимости
+                    return controller;
+                }
+                // BER Chart
+                if (clazz == BERChartController.class) {
+                    BERChartController controller = new BERChartController();
+                    // controller.setSignalChartController(signalChartController);
+                    return controller;
+                }
+                if (clazz == ShapeSignalChartController.class) {
+                    ShapeSignalChartController controller = new ShapeSignalChartController();
+                    // controller.setSignalChartController(signalChartController);
+                    return controller;
+                }
+
+                // Fallback для других контроллеров (если появятся)
                 try {
                     return clazz.getDeclaredConstructor().newInstance();
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    throw new RuntimeException("Cannot instantiate controller: " + clazz.getName(), e);
                 }
             });
 
-            mainLayout.getChildren().add(loader.load());
+            return loader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to load main_content.fxml", e);
         }
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ber_chart.fxml"));
-
-            // Установка фабрики контроллера для SignalChartController
-            loader.setControllerFactory(clazz -> {
-                if (clazz == BERChatController.class) {
-//                    BERChatController controller = new BERChatController();
-//                    controller.setSignalChartController(signalChartController);
-//                    return controller;
-                }
-                try {
-                    return clazz.getDeclaredConstructor().newInstance();
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
-            mainLayout.getChildren().add(loader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        return mainLayout;
     }
 
     public static ScrollPane createScrollPane(VBox content) {

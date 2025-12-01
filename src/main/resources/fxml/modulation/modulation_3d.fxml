@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.Pane?>
+
+<Pane fx:id="modulation3DContainer" styleClass="simulation-pane-3d" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.modulation.Modulation3DController">
+</Pane>

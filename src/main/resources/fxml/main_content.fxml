@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      spacing="15"
+      style="-fx-background-color: #121212; -fx-padding: 15;">
+
+    <fx:include source="control_panel.fxml" />
+    <fx:include source="simulation/simulation_2d.fxml" />
+    <fx:include source="simulation/simulation_3d.fxml" />
+    <fx:include source="signal_chart.fxml" />
+
+    <HBox spacing="20" style="-fx-alignment: CENTER_LEFT;">
+        <fx:include source="modulation/modulation_3d.fxml" />
+        <fx:include source="setting_modulation.fxml" />
+    </HBox>
+
+    <HBox spacing="20" style="-fx-alignment: CENTER_LEFT;">
+        <fx:include source="modulation/modulation_2d.fxml" />
+        <fx:include source="ber_chart.fxml" />
+    </HBox>
+
+    <fx:include source="shape_signal_chart.fxml" />
+
+</VBox>

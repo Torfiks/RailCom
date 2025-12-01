@@ -19,6 +19,8 @@ module ru.modulator.desktop.modulator {
     opens ru.railcom.desktop.ui.chart to javafx.fxml;
     opens ru.railcom.desktop.ui.component to javafx.fxml;
     opens ru.railcom.desktop.ui.control to javafx.fxml;
+    opens ru.railcom.desktop.ui.modulation to javafx.fxml;
+    opens ru.railcom.desktop.ui.setting to javafx.fxml;
     opens ru.railcom.desktop.ui.simulation to javafx.fxml;
 
     exports ru.railcom.desktop;
