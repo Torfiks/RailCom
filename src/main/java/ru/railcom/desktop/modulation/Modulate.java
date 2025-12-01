@@ -79,20 +79,20 @@ public class Modulate {
             return generateMpskConstellation(2);
         } else if (modulationType.equals("PSK 4")) {
             return generateMpskConstellation(4);
-        } else if (modulationType.endsWith("PSK")) {
-            int M = Integer.parseInt(modulationType.replace("PSK", ""));
+        } else if (modulationType.startsWith("PSK")) {
+            int M = Integer.parseInt(modulationType.replace("PSK ", ""));
             return generateMpskConstellation(M);
         }
 
         // --- PAM ---
-        else if (modulationType.endsWith("PAM")) {
-            int M = Integer.parseInt(modulationType.replace("PAM", ""));
+        else if (modulationType.startsWith("PAM")) {
+            int M = Integer.parseInt(modulationType.replace("PAM ", ""));
             return generateMpamConstellation(M);
         }
 
         // --- QAM ---
-        else if (modulationType.endsWith("QAM")) {
-            int M = Integer.parseInt(modulationType.replace("QAM", ""));
+        else if (modulationType.startsWith("QAM")) {
+            int M = Integer.parseInt(modulationType.replace("QAM ", ""));
             if (M == 4) {
                 // QPSK и 4-QAM эквивалентны, но QAM обычно без нормировки
                 return generateSquareMqamConstellation(M);
@@ -101,8 +101,8 @@ public class Modulate {
         }
 
         // --- FSK (векторное представление: каждый символ — отдельная частота) ---
-        else if (modulationType.endsWith("FSK")) {
-            int M = Integer.parseInt(modulationType.replace("FSK", ""));
+        else if (modulationType.startsWith("FSK")) {
+            int M = Integer.parseInt(modulationType.replace("FSK ", ""));
             return generateMfskConstellation(M);
         }
 

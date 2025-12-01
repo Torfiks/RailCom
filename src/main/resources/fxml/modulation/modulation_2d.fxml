@@ -3,7 +3,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.canvas.Canvas?>
 
+<?import javafx.scene.control.CheckBox?>
 <Pane fx:id="modulation2DContainer" styleClass="simulation-pane-2d" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.railcom.desktop.ui.modulation.Modulation2DController">
+    <CheckBox fx:id="showCloudCheckbox" text="Показывать облако точек" selected="true"/>
     <StackPane styleClass="canvas-container">
         <Canvas fx:id="canvas" styleClass="canvas-pane"/>
     </StackPane>

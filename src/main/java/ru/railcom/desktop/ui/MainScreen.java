@@ -117,6 +117,7 @@ public class MainScreen {
                     // controller.setSignalChartController(signalChartController); // при необходимости
                     return controller;
                 }
+                // Modulation 2D
                 if (clazz == Modulation2DController.class) {
                     Modulation2DController controller = new Modulation2DController();
                     controller.setModulateController(modulateController);
@@ -134,9 +135,10 @@ public class MainScreen {
                     // controller.setSignalChartController(signalChartController);
                     return controller;
                 }
+                // Shape Signal
                 if (clazz == ShapeSignalChartController.class) {
                     ShapeSignalChartController controller = new ShapeSignalChartController();
-                    // controller.setSignalChartController(signalChartController);
+                    controller.setModulateController(modulateController);
                     return controller;
                 }
 

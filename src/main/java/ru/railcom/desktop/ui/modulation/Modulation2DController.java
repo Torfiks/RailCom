@@ -56,7 +56,7 @@ public class Modulation2DController implements Initializable {
         int M = modulateController.getCountPoints();
         String mod = modulateController.getModulation().toString();
         // Идеальные точки (эталонное созвездие размера M)
-        Complex[] referencePoints = generateReferenceConstellation(M+mod);
+        Complex[] referencePoints = generateReferenceConstellation(mod+" "+M);
         System.out.println("ReferencePoints: " + Arrays.toString(referencePoints));
 
         // === 2. Генерируем случайные символы (1-based) ===
