@@ -11,8 +11,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import lombok.Setter;
 import ru.railcom.desktop.module.BaseStation;
-import ru.railcom.desktop.ui.control.EventBus;
-import ru.railcom.desktop.ui.control.SimulationController;
+import ru.railcom.desktop.simulation.EventBus;
+import ru.railcom.desktop.simulation.SimulationController;
 
 import java.net.URL;
 import java.util.ArrayList;

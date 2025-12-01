@@ -8,7 +8,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.AnchorPane;
 import lombok.Setter;
-import ru.railcom.desktop.ui.control.EventBus;
+import ru.railcom.desktop.simulation.EventBus;
 
 import java.net.URL;
 import java.util.Random;

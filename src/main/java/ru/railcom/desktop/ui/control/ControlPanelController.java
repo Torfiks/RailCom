@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import lombok.Setter;
+import ru.railcom.desktop.simulation.EventBus;
+import ru.railcom.desktop.simulation.SimulationController;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +25,7 @@ public class ControlPanelController implements Initializable {
     @FXML
     private Button startButton;
 
+    @Setter
     private SimulationController simulationController;
 
     @Override
@@ -31,9 +35,6 @@ public class ControlPanelController implements Initializable {
         });
     }
 
-    public void setup(SimulationController simulationController) {
-        this.simulationController = simulationController;
-    }
 
     public void startSimulation(){
         boolean isRunning = simulationController.isRunning();

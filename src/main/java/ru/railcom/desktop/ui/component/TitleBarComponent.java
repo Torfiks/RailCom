@@ -41,7 +41,7 @@ public class TitleBarComponent implements Initializable {
     private Stage stage;
 
     @Setter
-    private ControlPanelController controlPanelController; // <-- Добавлено
+    private ControlPanelController controlPanelController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

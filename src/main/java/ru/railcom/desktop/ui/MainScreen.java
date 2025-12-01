@@ -7,12 +7,15 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import ru.railcom.desktop.modulation.ModulateController;
+import ru.railcom.desktop.modulation.Modulation;
 import ru.railcom.desktop.ui.chart.BERChartController;
 import ru.railcom.desktop.ui.chart.ShapeSignalChartController;
 import ru.railcom.desktop.ui.chart.SignalChartController;
 import ru.railcom.desktop.ui.component.TitleBarComponent;
 import ru.railcom.desktop.ui.control.ControlPanelController;
-import ru.railcom.desktop.ui.control.SimulationController;
+import ru.railcom.desktop.simulation.SimulationController;
+import ru.railcom.desktop.ui.modulation.Modulation2DController;
 import ru.railcom.desktop.ui.modulation.Modulation3DController;
 import ru.railcom.desktop.ui.setting.SettingComponent;
 import ru.railcom.desktop.ui.simulation.Simulation2DController;
@@ -22,15 +25,14 @@ import java.io.IOException;
 
 public class MainScreen {
 
-    private Stage stage;
     private TitleBarComponent titleBarComponent;
     private SimulationController simulationController;
-    private SignalChartController signalChartController;
+    private ModulateController modulateController;
 
     public MainScreen() {}
 
     public Scene createScene(Stage stage) {
-        this.stage = stage;
+
         this.simulationController = SimulationController.builder()
                 .isRunning(false)
                 .track(100)
@@ -38,6 +40,11 @@ public class MainScreen {
                 .countBaseStations(5)
                 .trainPosition(0)
                 .typeArea("urban")
+                .build();
+
+        this.modulateController = ModulateController.builder()
+                .modulation(Modulation.PSK)
+                .countPoints(4)
                 .build();
 
         BorderPane root = new BorderPane();
@@ -82,7 +89,7 @@ public class MainScreen {
                 // Control Panel
                 if (clazz == ControlPanelController.class) {
                     ControlPanelController controller = new ControlPanelController();
-                    controller.setup(simulationController);
+                    controller.setSimulationController(simulationController);
                     titleBarComponent.setControlPanelController(controller);
                     return controller;
                 }
@@ -100,7 +107,7 @@ public class MainScreen {
                 }
                 // Signal Chart
                 if (clazz == SignalChartController.class) {
-                    signalChartController = new SignalChartController();
+                    SignalChartController signalChartController = new SignalChartController();
                     signalChartController.setSimulationController(simulationController);
                     return signalChartController;
                 }
@@ -110,10 +117,15 @@ public class MainScreen {
                     // controller.setSignalChartController(signalChartController); // при необходимости
                     return controller;
                 }
+                if (clazz == Modulation2DController.class) {
+                    Modulation2DController controller = new Modulation2DController();
+                    controller.setModulateController(modulateController);
+                    return controller;
+                }
                 // Setting Component
                 if (clazz == SettingComponent.class) {
                     SettingComponent controller = new SettingComponent();
-                    // controller.setSignalChartController(signalChartController); // при необходимости
+                    controller.setModulateController(modulateController);
                     return controller;
                 }
                 // BER Chart

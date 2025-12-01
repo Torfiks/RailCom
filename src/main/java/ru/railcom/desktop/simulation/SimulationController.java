@@ -1,4 +1,4 @@
-package ru.railcom.desktop.ui.control;
+package ru.railcom.desktop.simulation;
 
 import lombok.Builder;
 import lombok.Getter;
