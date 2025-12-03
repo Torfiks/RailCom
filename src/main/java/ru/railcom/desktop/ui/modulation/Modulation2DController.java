@@ -57,7 +57,7 @@ public class Modulation2DController implements Initializable {
         String mod = modulateController.getModulation().toString();
         // Идеальные точки (эталонное созвездие размера M)
         Complex[] referencePoints = generateReferenceConstellation(mod+" "+M);
-        System.out.println("ReferencePoints: " + Arrays.toString(referencePoints));
+//        System.out.println("ReferencePoints: " + Arrays.toString(referencePoints));
 
         // === 2. Генерируем случайные символы (1-based) ===
         int symbolCount = 1000; // минимум 100 для облака
@@ -69,7 +69,7 @@ public class Modulation2DController implements Initializable {
         // === 3. Модуляция + шум ===
         Complex[] idealSignal = modulate(modulateController.getModulation(),M, d);
         Complex[] receivedPoints = AwgnNoise.addAwgnNoise(idealSignal, 16); // SNR = 10 dB
-        System.out.println("ReceivedPoints: " + Arrays.toString(receivedPoints));
+//        System.out.println("ReceivedPoints: " + Arrays.toString(receivedPoints));
 //        // Демодуляция (если нужно)
 //        int[] detected = demodulate(modulateController.getModulation(), M, receivedPoints);
 //        System.out.println("Match: " + Arrays.equals(d, detected));
